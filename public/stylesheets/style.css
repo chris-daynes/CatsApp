@@ -13,6 +13,12 @@ li {
 }
 
 .cats_list {
+  margin-right: 10%;
+  min-width: 200px;
+}
+
+.cat {
   display: flex;
-  flex-wrap: wrap;
+  flex: flex-wrap;
+  min-width: 200px;
 }

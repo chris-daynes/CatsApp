@@ -17,20 +17,17 @@ router.get('/new', function(req, res) {
       res.render('catsNew');
 });
 
-router.post('/new', function(req, res) {
-  var newCat = {
-    name: req.body.name,
-    lives: req.body.lives,
-    liveStory: req.body.liveStory
-  }
+router.post('/', function(req, res) {
+  var newCat = req.body
+
   cats.addCat(newCat)
     .then(function (newCat) {
       console.log(newCat);
+      res.redirect('/cats')
     })
     .catch(function (error) {
       console.log(error);
     })
-  res.redirect('/')
 })
 
 
