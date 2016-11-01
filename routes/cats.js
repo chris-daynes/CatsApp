@@ -3,16 +3,35 @@ var router = express.Router();
 var cats = require('../db/cats.js')
 
 /* GET home page. */
-router.get('/cats', function(req, res, next) {
-  cats.getCats().then(listCats)
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, res) {
+  cats.getCats()
+    .then(function(catsFromDB) {
+      res.render('cats', { cats: catsFromDB });
+    })
+    .catch(function(error) {
+      console.log(error)
+    })
 });
 
+router.get('/new', function(req, res) {
+      res.render('catsNew');
+});
+
+router.post('/new', function(req, res) {
+  var newCat = {
+    name: req.body.name,
+    lives: req.body.lives,
+    liveStory: req.body.liveStory
+  }
+  cats.addCat(newCat)
+    .then(function (newCat) {
+      console.log(newCat);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  res.redirect('/')
+})
+
+
 module.exports = router;
-
-
-function listCats(catsArray) {
-  catsArray.forEach(function (cat) {
-    console.log(cat)
-  })
-}

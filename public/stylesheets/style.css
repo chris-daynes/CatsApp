@@ -1,8 +1,18 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: lightblue;
 }
 
 a {
   color: #00B7FF;
+}
+
+li {
+  list-style-type: none;
+}
+
+.cats_list {
+  display: flex;
+  flex-wrap: wrap;
 }
